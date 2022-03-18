@@ -122,6 +122,29 @@ std::shared_ptr<Node> DoublyLinkedList::Find(int value, ErrorCode& err)
 	return node;
 }
 
+void DoublyLinkedList::Clear()
+{
+	auto& prevNode = _head;
+	std::shared_ptr<Node> postNode = nullptr;
+	if (_size > 1)
+	{
+		postNode = prevNode->nextPtr;
+	}
+
+	while (prevNode != nullptr)
+	{
+		prevNode->nextPtr = nullptr;
+		prevNode->prevPtr = nullptr;
+		prevNode = postNode;
+		if (prevNode != nullptr)
+		{
+			postNode = prevNode->nextPtr;
+		}
+	}
+
+	_size = 0;
+}
+
 std::shared_ptr<Node> DoublyLinkedList::GetNode(int position)
 {
 	if (position < 0 && position >= _size)

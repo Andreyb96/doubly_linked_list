@@ -47,6 +47,9 @@ int main()
 			assert(myList.GetNode(i)->value == i + 1);
 			assert(err == OK);
 		}
+
+		myList.Clear();
+		assert(myList.Size() == 0);
 	}
 
 	{ // RemoveNode UT
@@ -93,6 +96,9 @@ int main()
 		myList.RemoveNode(0, err);
 		assert(myList.Size() == 0);
 		assert(err == OK);
+
+		myList.Clear();
+		assert(myList.Size() == 0);
 	}
 
 	{ // Find UT
@@ -115,6 +121,9 @@ int main()
 		assert(myList.Find(10, err) != nullptr);
 		assert(myList.Find(-5, err) == nullptr);
 		assert(myList.Find(15, err) == nullptr);
+
+		myList.Clear();
+		assert(myList.Size() == 0);
 	}
 
 	return 0;
