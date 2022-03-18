@@ -12,19 +12,22 @@ struct Node
 	{}
 		
 	int value;
-	std::shared_ptr<Node> ptr = nullptr;
+	std::shared_ptr<Node> prevPtr = nullptr;
+	std::shared_ptr<Node> nextPtr = nullptr;
 };
 
 class DoublyLinkedList
 {
 public:
 	DoublyLinkedList();
-
-private:
-
+	int Size();
+	void AddNode(int value, int position, ErrorCode& err);
+	std::shared_ptr<Node> GetNode(int position);
+	
 private:
 	int _size = 0;
 	std::shared_ptr<Node> _head = nullptr;
+	std::shared_ptr<Node> _tail = nullptr;
 };
 
 #endif // DOUBLY_LINKED_LIST_H
