@@ -145,6 +145,30 @@ void DoublyLinkedList::Clear()
 	_size = 0;
 }
 
+int DoublyLinkedList::GetIndex(int value, ErrorCode& err)
+{
+	err = OK;
+	int idx = 0;
+	if (_size == 0)
+	{
+		err = EMPTY_LIST;
+		return -1;
+	}
+	auto node = _head;
+
+	while (node != nullptr)
+	{
+		if (node->value == value)
+		{
+			return idx;
+		}
+		node = node->nextPtr;
+		idx++;
+	}
+
+	return -1;
+}
+
 std::shared_ptr<Node> DoublyLinkedList::GetNode(int position)
 {
 	if (position < 0 && position >= _size)

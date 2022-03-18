@@ -25,6 +25,7 @@ public:
 	void RemoveNode(int position, ErrorCode& err);
 	void PrintList();
 	std::shared_ptr<Node> Find(int value, ErrorCode& err);
+	int GetIndex(int value, ErrorCode& err);
 	void Clear();
 	std::shared_ptr<Node> GetNode(int position);
 	

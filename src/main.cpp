@@ -126,5 +126,35 @@ int main()
 		assert(myList.Size() == 0);
 	}
 
+	{ // GetIndex UT
+		DoublyLinkedList myList;
+
+		assert(myList.GetIndex(1, err) == -1);
+		assert(err == EMPTY_LIST);
+
+		for (auto i = 0; i < 10; i++)
+		{
+			myList.AddNode(i + 1, i, err);
+			assert(myList.Size() == i + 1);
+			assert(err == OK);
+			assert(myList.Find(i + 1, err) != nullptr);
+			assert(err == OK);
+		}
+
+		assert(myList.GetIndex(1, err) == 0);
+		assert(err == OK);
+		assert(myList.GetIndex(5, err) == 4);
+		assert(err == OK);
+		assert(myList.GetIndex(10, err) == 9);
+		assert(err == OK);
+		assert(myList.GetIndex(-5, err) == -1);
+		assert(err == OK);
+		assert(myList.GetIndex(15, err) == -1);
+		assert(err == OK);
+
+		myList.PrintList();
+		myList.Clear();
+	}
+
 	return 0;
 }
