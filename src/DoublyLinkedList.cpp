@@ -51,6 +51,46 @@ void DoublyLinkedList::AddNode(int value, int position, ErrorCode& err)
 	_size++;
 }
 
+void DoublyLinkedList::RemoveNode(int position, ErrorCode& err)
+{
+	err = OK;
+	if (_size == 0)
+	{
+		err = EMPTY_LIST;
+		return;
+	}
+
+	if (position < 0 || position >= _size)
+	{
+		err = INVALID_INPUT_PARAM;
+		return;
+	}
+
+	auto& tmpNode = GetNode(position);
+
+	if (tmpNode->prevPtr == nullptr)
+	{
+		_head = GetNode(position + 1);
+		tmpNode->nextPtr = nullptr;
+	}
+	else if (tmpNode->nextPtr == nullptr)
+	{
+		_tail = GetNode(position + 1);
+		tmpNode->prevPtr = nullptr;
+	}
+	else
+	{
+		auto& prevNode = GetNode(position - 1);
+		auto& postNode = GetNode(position + 1);
+		tmpNode->prevPtr = nullptr;
+		tmpNode->nextPtr = nullptr;
+		prevNode->nextPtr = postNode;
+		postNode->prevPtr = prevNode;
+	}
+
+	_size--;
+}
+
 std::shared_ptr<Node> DoublyLinkedList::GetNode(int position)
 {
 	if (position < 0 && position >= _size)

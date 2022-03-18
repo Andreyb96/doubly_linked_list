@@ -49,5 +49,51 @@ int main()
 		}
 	}
 
+	{ // RemoveNode UT
+		DoublyLinkedList myList;
+		myList.RemoveNode(0, err);
+		assert(err == EMPTY_LIST);
+
+		for (auto i = 0; i < 10; i++)
+		{
+			myList.AddNode(i + 1, i, err);
+			assert(myList.Size() == i + 1);
+			assert(err == OK);
+		}
+
+		myList.RemoveNode(10, err);
+		assert(err == INVALID_INPUT_PARAM);
+
+		myList.RemoveNode(4, err);
+		assert(myList.Size() == 9);
+		assert(err == OK);
+		myList.RemoveNode(5, err);
+		assert(myList.Size() == 8);
+		assert(err == OK);
+		myList.RemoveNode(3, err);
+		assert(myList.Size() == 7);
+		assert(err == OK);
+		myList.RemoveNode(4, err);
+		assert(myList.Size() == 6);
+		assert(err == OK);
+		myList.RemoveNode(2, err);
+		assert(myList.Size() == 5);
+		assert(err == OK);
+		myList.RemoveNode(3, err);
+		assert(myList.Size() == 4);
+		assert(err == OK);
+		myList.RemoveNode(1, err);
+		assert(myList.Size() == 3);
+		assert(err == OK);
+		myList.RemoveNode(2, err);
+		assert(myList.Size() == 2);
+		myList.RemoveNode(0, err);
+		assert(myList.Size() == 1);
+		assert(err == OK);
+		myList.RemoveNode(0, err);
+		assert(myList.Size() == 0);
+		assert(err == OK);
+	}
+
 	return 0;
 }
