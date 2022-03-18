@@ -100,6 +100,28 @@ void DoublyLinkedList::PrintList()
 	}
 }
 
+std::shared_ptr<Node> DoublyLinkedList::Find(int value, ErrorCode& err)
+{
+	err = OK;
+	if (_size == 0)
+	{
+		err = EMPTY_LIST;
+		return nullptr;
+	}
+	auto node = _head;
+
+	while (node != nullptr)
+	{
+		if (node->value == value)
+		{
+			return node;
+		}
+		node = node->nextPtr;
+	}
+
+	return node;
+}
+
 std::shared_ptr<Node> DoublyLinkedList::GetNode(int position)
 {
 	if (position < 0 && position >= _size)
