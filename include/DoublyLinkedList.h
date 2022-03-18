@@ -23,6 +23,7 @@ public:
 	int Size();
 	void AddNode(int value, int position, ErrorCode& err);
 	void RemoveNode(int position, ErrorCode& err);
+	void PrintList();
 	std::shared_ptr<Node> GetNode(int position);
 	
 private:

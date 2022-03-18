@@ -91,6 +91,15 @@ void DoublyLinkedList::RemoveNode(int position, ErrorCode& err)
 	_size--;
 }
 
+void DoublyLinkedList::PrintList()
+{
+	for (auto i = 0; i < _size; i++)
+	{
+		auto node = GetNode(i);
+		std::cout << "Position: " << i << "; Value: " << node->value << std::endl;
+	}
+}
+
 std::shared_ptr<Node> DoublyLinkedList::GetNode(int position)
 {
 	if (position < 0 && position >= _size)
